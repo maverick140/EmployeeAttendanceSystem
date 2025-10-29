@@ -1,0 +1,15 @@
+# Compiled Java class files
+*.class
+
+# Maven build directory
+/target/
+
+# NetBeans project-specific files
+/nb-private/
+/nbactions.xml
+
+# Database file
+*.db
+
+# Log files
+*.log
