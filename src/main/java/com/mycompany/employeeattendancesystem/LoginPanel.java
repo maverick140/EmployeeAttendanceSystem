@@ -1,6 +1,6 @@
 package com.mycompany.employeeattendancesystem;
 
-// Import the static color constants from MainApp for easy access
+
 import static com.mycompany.employeeattendancesystem.MainApp.*;
 
 import java.awt.CardLayout;
@@ -48,7 +48,7 @@ public class LoginPanel extends JPanel {
         setLayout(new GridBagLayout());
         setBackground(COLOR_BACKGROUND); // Nyanza
 
-        // --- Create the white login box ---
+        // Create the white login box 
         JPanel loginBox = new JPanel(new GridBagLayout());
         loginBox.setBackground(COLOR_BACKGROUND_PANEL); // White
         
@@ -144,7 +144,7 @@ public class LoginPanel extends JPanel {
         // Add action listener for button click
         loginButton.addActionListener(this::login);
 
-        // --- Add the white loginBox to the main green panel ---
+        // Add the white loginBox to the main green panel
         // This single GridBagConstraints() centers the box.
         add(loginBox, new GridBagConstraints());
     }
@@ -157,7 +157,7 @@ public class LoginPanel extends JPanel {
         String user = usernameField.getText();
         String pass = new String(passwordField.getPassword());
         
-        // --- THIS IS THE FIX ---
+        
         // The method in DatabaseManager is "validateAdmin", not "validateAdminLogin".
         if (dbManager.validateAdmin(user, pass)) {
             // Login successful!

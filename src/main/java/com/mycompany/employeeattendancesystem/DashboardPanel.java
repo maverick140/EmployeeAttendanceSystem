@@ -1,6 +1,6 @@
 package com.mycompany.employeeattendancesystem;
 
-// Import the static color constants from MainApp for easy access
+
 import static com.mycompany.employeeattendancesystem.MainApp.*;
 
 import com.mycompany.employeeattendancesystem.DatabaseManager.Employee;
@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable; // This line is now fixed
+import javax.swing.JTable; 
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -43,20 +43,20 @@ public class DashboardPanel extends JPanel {
 
     private DatabaseManager dbManager;
 
-    // --- Employee Management Tab ---
+    //  Employee Management Tab 
     private JTable employeeTable;
     private DefaultTableModel employeeTableModel;
     private JTextField nameField;
     private JTextField positionField;
     private JTextField emailField;
 
-    // --- Mark Attendance Tab ---
+    //  Mark Attendance Tab 
     private JComboBox<Employee> employeeComboBox;
     private JComboBox<String> statusComboBox;
     private JLabel attendanceDateLabel;
     private String todayDate;
 
-    // --- Attendance Report Tab ---
+    // Attendance Report Tab 
     private JTable reportTable;
     private DefaultTableModel reportTableModel;
     private JLabel reportDateLabel;
@@ -74,7 +74,7 @@ public class DashboardPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(COLOR_BACKGROUND); // Nyanza
 
-        // --- Create Header ---
+        //  Create Header 
         JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
         headerPanel.setBackground(COLOR_BACKGROUND_PANEL); // White
         headerPanel.putClientProperty("FlatLaf.style", "arc: 0"); // No rounding
@@ -86,8 +86,8 @@ public class DashboardPanel extends JPanel {
         
         add(headerPanel, BorderLayout.NORTH);
 
-        // --- Create Tabbed Pane ---
-        // FIX: Removed the duplicate "JTab"
+        //  Create Tabbed Pane 
+        
         JTabbedPane tabbedPane = new JTabbedPane(); 
         tabbedPane.setFont(new Font("Inter", Font.BOLD, 14));
         
@@ -101,21 +101,21 @@ public class DashboardPanel extends JPanel {
 
         add(tabbedPane, BorderLayout.CENTER);
 
-        // --- Load initial data ---
+        // Load initial data 
         refreshEmployeeManagementTab();
         refreshAttendanceTab();
         refreshReportTab();
     }
 
-    // =========================================================================
+   
     // TAB 1: EMPLOYEE MANAGEMENT
-    // =========================================================================
+   
     private JPanel createEmployeeManagementTab() {
         JPanel panel = new JPanel(new BorderLayout(20, 20));
         panel.setBackground(COLOR_BACKGROUND); // Nyanza
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        // --- Left Panel: Add/Edit Form ---
+        //Left Panel: Add/Edit Form 
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(COLOR_BACKGROUND_PANEL); // White
         formPanel.putClientProperty("FlatLaf.style", "arc: 12");
@@ -186,7 +186,7 @@ public class DashboardPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE;
         formPanel.add(addButton, gbc);
 
-        // --- Right Panel: Employee List ---
+        // Right Panel: Employee List 
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBackground(COLOR_BACKGROUND_PANEL); // White
         tablePanel.putClientProperty("FlatLaf.style", "arc: 12");
@@ -226,29 +226,29 @@ public class DashboardPanel extends JPanel {
         deleteButton.setBorder(new EmptyBorder(10, 0, 0, 0));
         tablePanel.add(deleteButton, BorderLayout.SOUTH);
 
-        // --- Add sub-panels to main panel ---
+        // Add sub-panels to main panel
         panel.add(formPanel, BorderLayout.WEST);
         panel.add(tablePanel, BorderLayout.CENTER);
 
-        // --- Action Listeners for this tab ---
+        // Action Listeners for this tab
         addButton.addActionListener(this::addEmployee);
         deleteButton.addActionListener(this::deleteEmployee);
 
         return panel;
     }
 
-    // =========================================================================
+    
     // TAB 2: MARK ATTENDANCE
-    // =========================================================================
+  
     private JPanel createMarkAttendanceTab() {
-        // Use GridBagLayout to center the content
+        
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(COLOR_BACKGROUND); // Nyanza
+        panel.setBackground(COLOR_BACKGROUND); 
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        // --- Content Box (white) ---
+        // Content Box (white)
         JPanel contentBox = new JPanel(new GridBagLayout());
-        contentBox.setBackground(COLOR_BACKGROUND_PANEL); // White
+        contentBox.setBackground(COLOR_BACKGROUND_PANEL); 
         contentBox.putClientProperty("FlatLaf.style", "arc: 12");
         contentBox.setBorder(new EmptyBorder(30, 30, 30, 30));
 
@@ -316,26 +316,26 @@ public class DashboardPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE;
         contentBox.add(submitButton, gbc);
 
-        // --- Add content box to the main panel ---
+        // Add content box to the main panel
         panel.add(contentBox, new GridBagConstraints());
         
-        // --- Action Listeners for this tab ---
-        // FIX: Removed the extra dot
+        //Action Listeners for this tab
+        
         submitButton.addActionListener(this::markAttendance); 
 
         return panel;
     }
 
-    // =========================================================================
+  
     // TAB 3: ATTENDANCE REPORT
-    // =========================================================================
+    
     private JPanel createAttendanceReportTab() {
         JPanel panel = new JPanel(new BorderLayout(20, 20));
         panel.setBackground(COLOR_BACKGROUND_PANEL); // White
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
         panel.putClientProperty("FlatLaf.style", "arc: 12");
 
-        // --- Header Panel (for date) ---
+        // Header Panel (for date)
         JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         headerPanel.setOpaque(false); // Make transparent
         
@@ -349,11 +349,11 @@ public class DashboardPanel extends JPanel {
         reportDateLabel.setFont(new Font("Inter", Font.PLAIN, 16));
         headerPanel.add(reportDateLabel);
         
-        // (Future enhancement: Add a JDatePicker here to select date)
+     
 
         panel.add(headerPanel, BorderLayout.NORTH);
 
-        // --- Report Table ---
+        //  Report Table 
         String[] columnNames = {"Employee Name", "Status"};
         reportTableModel = new DefaultTableModel(columnNames, 0) {
             @Override
@@ -368,7 +368,7 @@ public class DashboardPanel extends JPanel {
         scrollPane.setBorder(BorderFactory.createLineBorder(COLOR_ACCENT));
         panel.add(scrollPane, BorderLayout.CENTER);
         
-        // --- Refresh Button ---
+        // Refresh Button 
         JButton refreshButton = new JButton("Refresh Report");
         refreshButton.setBackground(COLOR_ACCENT); // Vista Blue
         refreshButton.setForeground(Color.WHITE);
@@ -380,15 +380,15 @@ public class DashboardPanel extends JPanel {
         buttonPanel.add(refreshButton);
         panel.add(buttonPanel, BorderLayout.SOUTH);
         
-        // --- Action Listeners for this tab ---
+        //Action Listeners for this tab
         refreshButton.addActionListener(e -> refreshReportTab());
 
         return panel;
     }
 
-    // =========================================================================
+    
     // HELPER METHODS (Styling)
-    // =========================================================================
+    
     
     /**
      * Applies a consistent visual style to a JTable.
@@ -417,9 +417,9 @@ public class DashboardPanel extends JPanel {
         }
     }
 
-    // =========================================================================
+    
     // DATA REFRESH METHODS
-    // =========================================================================
+    
     
     /**
      * Clears the form and reloads the employee table from the database.
@@ -439,7 +439,7 @@ public class DashboardPanel extends JPanel {
      */
     private void refreshAttendanceTab() {
         employeeComboBox.removeAllItems();
-        // --- THIS IS THE FIX ---
+       
         // The method in DatabaseManager is "getAllEmployeesForAttendance"
         List<Employee> employees = dbManager.getAllEmployeesForAttendance();
         for (Employee emp : employees) {
@@ -451,14 +451,14 @@ public class DashboardPanel extends JPanel {
      * Reloads the attendance report for today's date.
      */
     private void refreshReportTab() {
-        // --- THIS IS THE FIX ---
+       
         // The method in DatabaseManager is "loadAttendanceReport"
         dbManager.loadAttendanceReport(reportTableModel, todayDate);
     }
 
-    // =========================================================================
+   
     // ACTION LISTENER METHODS
-    // =========================================================================
+  
     
     /**
      * Called when the "Add Employee" button is clicked.
@@ -527,7 +527,7 @@ public class DashboardPanel extends JPanel {
 
         if (dbManager.markAttendance(selectedEmployee.getId(), todayDate, status)) {
             JOptionPane.showMessageDialog(this, "Attendance marked for " + selectedEmployee.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
-            // Auto-refresh the report tab so it's up to date
+       
             refreshReportTab();
         } else {
             JOptionPane.showMessageDialog(this, "Failed to mark attendance.", "Error", JOptionPane.ERROR_MESSAGE);

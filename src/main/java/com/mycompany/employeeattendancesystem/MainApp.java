@@ -16,7 +16,7 @@ import javax.swing.UIManager;
  */
 public class MainApp {
 
-    // --- Your Custom Color Palette ---
+    //Custom Color Palette
     public static final Color COLOR_PRIMARY = new Color(0x7D84B2);   // Cool Gray
     public static final Color COLOR_SECONDARY = new Color(0x8AA399); // Cambridge Blue
     public static final Color COLOR_ACCENT = new Color(0x8FA6CB);    // Vista Blue
@@ -38,7 +38,7 @@ public class MainApp {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             
-            // --- Global UI Settings (Rounded Corners) ---
+            // Global UI Settings (Rounded Corners)
             // This sets the corner radius for almost all components
             UIManager.put("Component.arc", 12);
             UIManager.put("Button.arc", 12);
@@ -85,9 +85,7 @@ public class MainApp {
 
     private void initDatabase() {
         dbManager = new DatabaseManager();
-        // The line "dbManager.initializeDatabase()" was here, but it's not needed
-        // because the constructor "new DatabaseManager()" already does the setup.
-        // Removing it fixes the first build error.
+        
     }
 
     /**
